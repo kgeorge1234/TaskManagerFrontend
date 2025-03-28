@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Before running the frontend, make sure you have **Node.js (latest version)** installed.
+Before running the frontend, make sure you have **Node.js (latest version)** and npm installed.
 
 ---
 
@@ -30,3 +30,10 @@ Follow these steps to set up the backend:
    This will start the app, and the URL will be printed in the console (usually localhost).
    
 
+4.  **Run tests**  
+   Run the tests using the following command:
+   ```bash
+   npm test
+   ```
+   This will list the results of unit tests in console.
+   
