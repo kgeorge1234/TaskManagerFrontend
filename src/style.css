@@ -1,0 +1,10 @@
+
+th, td {
+    border: none !important;
+}
+
+.wrapText {
+    word-wrap: break-word;
+    white-space: normal;
+    max-width: 200px;
+  }
