@@ -8,7 +8,10 @@ interface Task {
   dueDate: string;
 }
 
+// Functional component
 const App: React.FC = () => {
+  
+  //Hooks
   const [tasks, setTasks] = useState<Task[]>([]);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [title, setTitle] = useState("");
@@ -19,11 +22,13 @@ const App: React.FC = () => {
     fetchTasks();
   }, []);
 
+  // Function to get tasks
   const fetchTasks = async () => {
     const response = await axios.get("http://localhost:3000/api/tasks");
     setTasks(response.data);
   };
 
+  // Function to add task
   const addTask = async () => {
     if (!title) {
       alert("Task Title is required.");
@@ -40,6 +45,7 @@ const App: React.FC = () => {
     resetForm();
   };
 
+  // Function to update task
   const updateTask = async () => {
     if (!selectedTask) return;
     await axios.put(`http://localhost:3000/api/tasks/${selectedTask.id}`, {
@@ -51,11 +57,13 @@ const App: React.FC = () => {
     resetForm();
   };
 
+  // Function to delete task
   const deleteTask = async (id: number) => {
     await axios.delete(`http://localhost:3000/api/tasks/${id}`);
     fetchTasks();
   };
 
+  // Function to clear inputs
   const resetForm = () => {
     setSelectedTask(null);
     setTitle("");
@@ -72,7 +80,7 @@ const App: React.FC = () => {
         <div className="mb-3">
           <input type="text" className="form-control mb-2" placeholder="Task Title" value={title} onChange={(e) => setTitle(e.target.value)} />
           <input type="text" className="form-control mb-2" placeholder="Task Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-          <input type="date" className="form-control mb-2" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+          <input type="date" className="form-control mb-2" placeholder="YYYY-mm-dd" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
           <button className="btn btn-success mt-2 me-2" onClick={addTask}>Add</button>
           <button className="btn btn-info mt-2" onClick={updateTask} disabled={!selectedTask}>Update</button>
         </div>
